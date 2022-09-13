@@ -30,14 +30,14 @@ class UsuarioManager(BaseUserManager):
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
     
-    email = models.EmailField(verbose_name="E-mail do usuário", max_length=194, unique=True)
-    is_active = models.BooleanField(verbose_name="Usuário ativo", default=True)
-    is_staff = models.BooleanField(verbose_name="Usuário da equipe de desenvolvimento", default=False)
-    is_superuser = models.BooleanField(verbose_name="Usuário é admin", default=False)
+    email = models.EmailField(verbose_name="E-mail do usuario", max_length=194, unique=True)
+    is_active = models.BooleanField(verbose_name="Usuario ativo", default=True)
+    is_staff = models.BooleanField(verbose_name="Usuario da equipe de desenvolvimento", default=False)
+    is_superuser = models.BooleanField(verbose_name="Usuario admin", default=False)
 
     USERNAME_FIELD = 'email'
 
-    objects = UsuarioManager
+    objects = UsuarioManager()
 
     class Meta:
         verbose_name = "Usuário"
