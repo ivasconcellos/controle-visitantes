@@ -42,6 +42,18 @@ class Visitante(models.Model):
             return self.placa_veiculo
         return "Veículo não registrado!"
 
+    def get_cpf(self):
+        if self.cpf:
+            cpf = str(self.cpf)
+            cpf_parte_1 = cpf[0:3]
+            cpf_parte_2 = cpf[3:6]
+            cpf_parte_3 = cpf[6:9]
+            cpf_parte_4 = cpf[9:]
+
+            cpf_formatado = f"{cpf_parte_1}.{cpf_parte_2}.{cpf_parte_3}-{cpf_parte_4}"
+            
+            return cpf_formatado
+
     class Meta:
         verbose_name = "Visitante"
         verbose_name_plural = "Visitantes"
