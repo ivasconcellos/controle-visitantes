@@ -3,6 +3,13 @@ from django.db import models
 
 class Visitante(models.Model):
 
+    STATUS_VISITANTE = [
+        ("AGUARDANDO", "Aguardando"), 
+        ("EM_VISITA", "Em visita"), 
+        ("FINALIZADO", "Visita Finalizada")
+        ]
+    
+    status = models.CharField(verbose_name="Status", max_length=10, choices=STATUS_VISITANTE, default="AGUARDANDO")
     nome_completo = models.CharField(verbose_name="Nome completo do visitante", max_length=194)
     cpf = models.CharField(verbose_name="CPF", max_length=11)
     data_nascimento = models.DateField(verbose_name="Data de nascimento", auto_now=False, auto_now_add=False)
@@ -13,6 +20,7 @@ class Visitante(models.Model):
     horario_autorizacao = models.DateTimeField(verbose_name="Horário de autorização da entrada", auto_now=False, blank=True, null=True)
     morador_responsavel = models.CharField(verbose_name="Morador responsável por autorizar a entrada do visitante", max_length=194, blank=True)
     registrado_por = models.ForeignKey("porteiros.Porteiro", verbose_name="Reponsável pelo registro", on_delete=models.PROTECT)
+
 
     def get_horario_saida(self):
         if self.horario_saida:
